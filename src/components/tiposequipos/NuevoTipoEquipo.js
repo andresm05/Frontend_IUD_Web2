@@ -16,9 +16,13 @@ export default function NuevoTipoEquipo() {
       nuevoTipoDeEquipo[key] = value;
     });
     console.log(nuevoTipoDeEquipo)
-
-    await crearTipoEquipo(nuevoTipoDeEquipo)
-    toast.success("Tipo de Equipo agregado con éxito agregado con éxito")    
+    try{
+      await crearTipoEquipo(nuevoTipoDeEquipo)
+      toast.success("Tipo de Equipo agregado con éxito")  
+    }catch(error){
+      toast.error("Error Agregando el Tipo de Equipo")
+    }
+  
   };
 
   return (

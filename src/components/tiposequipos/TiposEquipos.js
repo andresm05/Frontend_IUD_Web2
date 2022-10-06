@@ -7,31 +7,35 @@ import { Alert } from "@mui/material";
 
 export default function TipoEquipos() {
   const [tipoEquipos, setTipoEquipos] = useState([]);
+  const [consulta, setConsulta] = useState(true);
   const [loading, setLoading] = useState(true);
   const [query, setQuery] = useState(true);
   const [error, setError] = useState(false);
 
-  const listTipoEquipos = async () => {
-    try {
-      const { data } = await obtenerTiposEquipos(query);
-      setTipoEquipos(data);
-      console.log(data);
-      setLoading(false);
-      setError(false);
-    } catch (e) {
-      console.log(e);
-      setLoading(false);
-      setError(true);
-    }
+  const cambiarSwich = () => {
+    setConsulta(true);
+    setQuery(!query);
   };
 
-  const cambiarSwich = () =>{
-    setQuery(!query)
-  }
-
   useEffect(() => {
-    listTipoEquipos();
-  }, [query]);
+    const listTipoEquipos = async () => {
+      try {
+        const { data } = await obtenerTiposEquipos(query);
+        setTipoEquipos(data);
+        console.log(data);
+        setLoading(false);
+        setError(false);
+        setConsulta(false);
+      } catch (e) {
+        console.log(e);
+        setLoading(false);
+        setError(true);
+      }
+    };
+    if (consulta) {
+      listTipoEquipos();
+    }
+  }, [consulta, query]);
 
   return (
     <div>
@@ -57,10 +61,13 @@ export default function TipoEquipos() {
                 type="checkbox"
                 role="switch"
                 id="flexSwitchCheckChecked"
-                checked = {query}
+                checked={query}
                 onChange={cambiarSwich}
               />
-              <label className="form-check-label" for="flexSwitchCheckChecked">
+              <label
+                className="form-check-label"
+                htmlFor="flexSwitchCheckChecked"
+              >
                 (Activo / Inactivo)
               </label>
             </div>
@@ -78,7 +85,11 @@ export default function TipoEquipos() {
             <tbody>
               {tipoEquipos.map((tipoEquipo) => {
                 return (
-                  <TablaEquipos tipoEquipo={tipoEquipo} key={tipoEquipo._id} />
+                  <TablaEquipos
+                    setConsulta={setConsulta}
+                    tipoEquipo={tipoEquipo}
+                    key={tipoEquipo._id}
+                  />
                 );
               })}
             </tbody>

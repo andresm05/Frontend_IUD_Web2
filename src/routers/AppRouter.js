@@ -10,6 +10,7 @@ import Inventarios from '../components/inventarios/Inventarios'
 import NotFound from '../components/ui/NotFound'
 import NuevoTipoEquipo from '../components/tiposequipos/NuevoTipoEquipo'
 import NuevoUsuario from '../components/usuarios/NuevoUsuario'
+import NuevaMarca from '../components/marcas/NuevaMarca'
 
 export default function AppRouter() {
   return (
@@ -25,6 +26,7 @@ export default function AppRouter() {
                 <Route path='*' element={<NotFound />} />
                 <Route path = '/nuevoTipoDeEquipo' element={<NuevoTipoEquipo/>}/>
                 <Route path = '/nuevoUsuario' element={<NuevoUsuario/>}/>
+                <Route path = '/nuevaMarca' element={<NuevaMarca/>}/>
             </Routes>
         </main>
     </div>

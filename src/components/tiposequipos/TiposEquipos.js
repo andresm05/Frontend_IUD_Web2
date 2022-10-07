@@ -88,6 +88,7 @@ export default function TipoEquipos() {
                   <TablaEquipos
                     setConsulta={setConsulta}
                     tipoEquipo={tipoEquipo}
+                    setLoading={setLoading}
                     key={tipoEquipo._id}
                   />
                 );

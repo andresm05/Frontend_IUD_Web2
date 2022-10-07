@@ -2,7 +2,7 @@ import React, { useRef } from "react";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-export default function NuevoObject({ crear, nombre }) {
+export default function NuevoObject({ crear, nombre, email }) {
   const form = useRef(null);
   const nuevoObject = {};
 
@@ -41,6 +41,18 @@ export default function NuevoObject({ crear, nombre }) {
               placeholder="Digite el nombre"
               required
             />
+            {email && (
+              <>
+                <label htmlFor="email">Email</label>
+                <input
+                  name="email"
+                  type="email"
+                  className="form-control w-50"
+                  placeholder="Digite el email"
+                  required
+                />
+              </>
+            )}
           </div>
           <button type="submit" className="btn btn-primary m-1">
             Enviar

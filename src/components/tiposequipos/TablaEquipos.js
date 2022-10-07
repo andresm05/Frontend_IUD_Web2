@@ -22,10 +22,9 @@ export default function TablaEquipos({ tipoEquipo, setConsulta }) {
 
   const editarTipoEquipo = async () => {
     try {
-      console.log(infoNuevoTipoEq);
       await editarTipoEquipoPorID(tipoEquipo._id, infoNuevoTipoEq);
-      setEdit(false);
       setConsulta(true);
+      setEdit(false);
       toast.success("Tipo de equipo modificado con éxito");
     } catch (error) {
       toast.error("Error editando el tipo de equipo");
@@ -60,7 +59,7 @@ export default function TablaEquipos({ tipoEquipo, setConsulta }) {
               placeholder="Username"
               aria-label="Username"
               aria-describedby="basic-addon1"
-              defaultValue={infoNuevoTipoEq.nombre}
+              defaultValue={tipoEquipo.nombre}
               onChange={(e) => {
                 setInfoNuevoTipoEq({
                   ...infoNuevoTipoEq,

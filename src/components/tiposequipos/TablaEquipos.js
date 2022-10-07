@@ -4,7 +4,7 @@ import EditarBoton from "../ui/EditarBoton";
 import EliminarBoton from "../ui/EliminarBoton";
 import ConfirmarBoton from "../ui/ConfirmarBoton";
 import CancelarBoton from "../ui/CancelarBoton";
-import SeleccionEstado from "../ui/SeleccionEstado"
+import SeleccionEstado from "../ui/SeleccionEstado";
 import {
   editarTipoEquipoPorID,
   borrarTipoEquipoPorID,
@@ -22,6 +22,7 @@ export default function TablaEquipos({ tipoEquipo, setConsulta }) {
 
   const editarTipoEquipo = async () => {
     try {
+      console.log(infoNuevoTipoEq);
       await editarTipoEquipoPorID(tipoEquipo._id, infoNuevoTipoEq);
       setEdit(false);
       setConsulta(true);
@@ -69,7 +70,10 @@ export default function TablaEquipos({ tipoEquipo, setConsulta }) {
             />
           </td>
           <td>
-            <SeleccionEstado setInfoObject={setInfoNuevoTipoEq} infoObject={infoNuevoTipoEq}/>
+            <SeleccionEstado
+              setInfoObject={setInfoNuevoTipoEq}
+              infoObject={infoNuevoTipoEq}
+            />
           </td>
           <td>{dayjs(tipoEquipo.fechaCreacion).format("DD/MM/YYYY")}</td>
           <td>{dayjs(tipoEquipo.fechaActualizacion).format("DD/MM/YYYY")}</td>

@@ -54,7 +54,7 @@ export default function TipoEquipos() {
       ) : (
         <div>
           <div className="d-flex flex-row justify-content-between">
-            <CrearBoton nombre="Tipo de equipo" pag="/nuevoTipoDeEquipo" />
+            <CrearBoton nombre="Tipo de equipo" pag={"/nuevoTipoDeEquipo"} />
             <div className="form-check form-switch">
               <input
                 className="form-check-input"

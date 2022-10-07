@@ -1,6 +1,6 @@
 import React, { useRef } from "react";
 import { toast, ToastContainer } from "react-toastify";
-import 'react-toastify/dist/ReactToastify.css';
+import "react-toastify/dist/ReactToastify.css";
 import { crearTipoEquipo } from "../../services/TipoEquipoService";
 
 export default function NuevoTipoEquipo() {
@@ -15,14 +15,18 @@ export default function NuevoTipoEquipo() {
       console.log(value, key);
       nuevoTipoDeEquipo[key] = value;
     });
-    console.log(nuevoTipoDeEquipo)
-    try{
-      await crearTipoEquipo(nuevoTipoDeEquipo)
-      toast.success("Tipo de Equipo agregado con éxito")  
-    }catch(error){
-      toast.error("Error Agregando el Tipo de Equipo")
+    console.log(nuevoTipoDeEquipo);
+    try {
+      await crearTipoEquipo(nuevoTipoDeEquipo);
+      toast.success("Tipo de Equipo agregado con éxito");
+    } catch (error) {
+      const { data } = error.response;
+      if (data) {
+        toast.error(data.msg);
+      } else {
+        toast.error("Error Agregando el Tipo de Equipo");
+      }
     }
-  
   };
 
   return (
@@ -34,12 +38,12 @@ export default function NuevoTipoEquipo() {
             <input
               name="nombre"
               type="text"
-              className="form-control"
+              className="form-control w-50"
               placeholder="Digite el nombre"
               required
             />
           </div>
-          <button type="submit" className="btn btn-primary m-1">
+          <button type="submit" className="btn btn-primary m-1 p-2">
             Enviar
           </button>
         </div>

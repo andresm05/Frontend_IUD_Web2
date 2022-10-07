@@ -4,6 +4,7 @@ import { obtenerUsuarios } from "../../services/UsuarioService";
 import ReactLoading from "react-loading";
 import CrearBoton from "../ui/CrearBoton";
 import TablaUsuarios from "./TablaUsuarios";
+import { ToastContainer } from "react-toastify";
 
 export default function Usuarios() {
   const [usuarios, setUsuarios] = useState([]);
@@ -100,6 +101,7 @@ export default function Usuarios() {
           </table>
         </div>
       )}
+      <ToastContainer position="bottom-center" autoClose={5000} />
     </div>
   );
 }

@@ -12,7 +12,7 @@ import EliminarBoton from "../ui/EliminarBoton";
 import ModalEliminar from "../ui/ModalEliminar";
 import SeleccionEstado from "../ui/SeleccionEstado";
 
-export default function TablaUsuarios({ usuario, setConsulta}) {
+export default function TablaUsuarios({ usuario, setConsulta }) {
   const [edit, setEdit] = useState(false);
   const [infoNuevoUsuario, setInfoNuevoUsuario] = useState({
     nombre: usuario.nombre,
@@ -29,6 +29,11 @@ export default function TablaUsuarios({ usuario, setConsulta}) {
       toast.success("Usuario modificado con éxito");
     } catch (error) {
       toast.error("Error editando el usuario");
+      setInfoNuevoUsuario({
+        nombre: usuario.nombre,
+        estado: usuario.estado,
+        email: usuario.email,
+      });
       setEdit(false);
     }
   };

@@ -25,7 +25,7 @@ const obtenerEstados = (estado = true) => {
 /**
  * Crea un estado
  */
-const crearEstadoPorID = (data) => {
+const crearEstado = (data) => {
     return axiosConfig.post('estadoEquipos', data, {
         headers: {
             'Content-type': 'application/json'
@@ -57,7 +57,7 @@ const editarEstadoPorID = (estadoID, data) => {
 
 export {
     obtenerEstados,
-    crearEstadoPorID,
+    crearEstado,
     editarEstadoPorID,
     borrarEstadoPorID,
     obtenerEstadoPorID

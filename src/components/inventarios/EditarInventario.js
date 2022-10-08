@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 import { obtenerEstados } from "../../services/EstadoService";
 import { editarInventarioPorID, obtenerInventarioPorId } from "../../services/InventarioService";
@@ -113,10 +113,10 @@ export default function EditarInventario() {
     setInfoInventario({ ...infoInventario, marca: seleccion });
   };
   const getEstado = () => {
-    const opciones = document.getElementById("marca");
+    const opciones = document.getElementById("estado");
     const seleccion = opciones.options[opciones.selectedIndex].value;
     console.log(seleccion);
-    setInfoInventario({ ...infoInventario, marca: seleccion });
+    setInfoInventario({ ...infoInventario, estado: seleccion });
   };
 
   return (
@@ -165,7 +165,7 @@ export default function EditarInventario() {
       <select
         className="form-select form-select-sm w-50"
         id="usuario"
-        nombre="usuario"
+        name="usuario"
         onChange={() => getUsuario()}
       >
         {usuarios.map((usuario) => {
@@ -176,7 +176,7 @@ export default function EditarInventario() {
       <select
         className="form-select form-select-sm w-50"
         id="tipoEquipo"
-        nombre="tipoEquipo"
+        name="tipoEquipo"
         onChange={() => getTipoEquipo()}
       >
         {tiposEquipos.map((tipoEquipo) => {
@@ -187,7 +187,7 @@ export default function EditarInventario() {
       <select
         className="form-select form-select-sm w-50"
         id="marca"
-        nombre="marca"
+        name="marca"
         onChange={() => getMarca()}
       >
         {marcas.map((marca) => {
@@ -198,15 +198,17 @@ export default function EditarInventario() {
       <select
         className="form-select form-select-sm w-50"
         id="estado"
-        nombre="estado"
+        name="estado"
         onChange={() => getEstado()}
       >
         {estados.map((estado) => {
           return <Selector element={estado} />;
         })}
       </select>
-      <button type="button" class="btn btn-outline-primary"
+
+      <button type="button" class="btn btn-outline-primary m-2"
       onClick={()=>editarInventario()}>Enviar</button>
+      <Link to='/inventarios' type="button" className="btn btn-outline-danger m-2">Cancelar</Link>
       <ToastContainer position="bottom-center" autoClose={5000} />
     </div>
   );

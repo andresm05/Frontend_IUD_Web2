@@ -7,7 +7,6 @@ import EliminarBoton from "../ui/EliminarBoton";
 import ModalEliminar from "../ui/ModalEliminar";
 
 export default function CardInventarios({ inventario, setConsulta }) {
-  const [edit, setEdit] = useState(false);
   const [mostrarAd, setMostrarAd] = useState(false);
 
   const borrarInventario = async () => {

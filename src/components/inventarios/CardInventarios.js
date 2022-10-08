@@ -14,13 +14,13 @@ export default function CardInventarios({ inventario, setConsulta }) {
       await borrarInventarioPorId(inventario._id);
       setMostrarAd(false);
       setConsulta(true);
-      toast.success("Marca eliminada");
+      toast.success("Inventario eliminado");
     } catch (error) {
-      toast.error("Error al eliminar la Marca");
+      toast.error("Error al eliminar el Inventario");
     }
   };
   return (
-    <div className="card" Style="width: 18rem;">
+    <div className="card m-2" Style="width: 18rem;">
       <img className="card-img-top" src={inventario.foto} alt="Card cap" />
       <div className="card-body">
         <h5 className="card-title">{`Serial: ${inventario.serial}`}</h5>
@@ -31,14 +31,36 @@ export default function CardInventarios({ inventario, setConsulta }) {
             fecha de compra: {dayjs(inventario.fechaCompra).format("MMMM-YYYY")}
           </li>
           <li className="list-group-item">
-            usuario: {inventario.usuario.email}
+            usuario:{" "}
+            {inventario.usuario === null ? (
+              <>No definido</>
+            ) : (
+              <>{inventario.usuario.email}</>
+            )}
           </li>
-          <li className="list-group-item">marca: {inventario.marca.nombre}</li>
           <li className="list-group-item">
-            tipo de Equipo: {inventario.tipoEquipo.nombre}
+            marca:{" "}
+            {inventario.marca === null ? (
+              <>No Definido</>
+            ) : (
+              <>{inventario.marca.nombre}</>
+            )}
           </li>
           <li className="list-group-item">
-            Estado: {inventario.estado.nombre}
+            tipo de Equipo:{" "}
+            {inventario.equipo === null ? (
+              <>No definido</>
+            ) : (
+              <>{inventario.tipoEquipo.nombre}</>
+            )}
+          </li>
+          <li className="list-group-item">
+            Estado:{" "}
+            {inventario.estado === null ? (
+              <>No definido</>
+            ) : (
+              <>{inventario.estado.nombre}</>
+            )}
           </li>
         </ul>
         <div className="d-flex flex-row justify-content-around p-2">
@@ -46,8 +68,8 @@ export default function CardInventarios({ inventario, setConsulta }) {
           <Link
             to={{
               pathname: "/editarInventario",
-              search:`${inventario._id}`,
-              state: inventario
+              search: `${inventario._id}`,
+              state: inventario,
             }}
             className="btn btn-outline-primary"
             data-toggle="tooltip"

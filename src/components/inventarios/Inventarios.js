@@ -9,7 +9,6 @@ export default function Inventarios() {
   const [inventarios, setInventarios] = useState([]);
   const [consulta, setConsulta] = useState(true);
   const [loading, setLoading] = useState(true);
-  const [query, setQuery] = useState(true);
   const [error, setError] = useState(false);
 
   useEffect(() => {
@@ -46,13 +45,13 @@ export default function Inventarios() {
           width={"20%"}
         />
       ) : (
-        <div>
+        <div className="d-flex flex-column">
           <CrearBoton
             nombre="Inventario"
             pag={"/nuevoInventario"}
-            className="d-flex justify-content-start"
+            className="m-5"
           />
-          <div className="d-flex flex-row justify-content-between">
+          <div className="d-flex flex-wrap justify-content-between">
             {inventarios.map((inventario) => {
               return (
                 <CardInventarios

@@ -2,7 +2,10 @@ import React, { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 import { obtenerEstados } from "../../services/EstadoService";
-import { editarInventarioPorID, obtenerInventarioPorId } from "../../services/InventarioService";
+import {
+  editarInventarioPorID,
+  obtenerInventarioPorId,
+} from "../../services/InventarioService";
 import { obtenerMarcas } from "../../services/MarcaService";
 import { obtenerTiposEquipos } from "../../services/TipoEquipoService";
 import { obtenerUsuarios } from "../../services/UsuarioService";
@@ -20,14 +23,15 @@ export default function EditarInventario() {
     estado: inventario.estado,
     foto: inventario.foto,
   });
+  const location = useLocation();
+  console.log(location);
+  const idInventario = location.search.slice(1);
+
   const [usuarios, setUsuarios] = useState([]);
   const [marcas, setMarcas] = useState([]);
   const [tiposEquipos, setTipoEquipos] = useState([]);
   const [estados, setEstados] = useState([]);
   const [consulta, setConsulta] = useState(true);
-  const location = useLocation();
-  console.log(location);
-  const idInventario = location.search.slice(1);
 
   useEffect(() => {
     const consultarInventario = async () => {
@@ -85,14 +89,13 @@ export default function EditarInventario() {
   }, [consulta, idInventario]);
 
   const editarInventario = async () => {
-    try{
-        await editarInventarioPorID(idInventario,infoInventario)
-        toast.success('Inventario editado con éxito');
-    }catch(e){
-        toast.error(e);
+    try {
+      await editarInventarioPorID(idInventario, infoInventario);
+      toast.success("Inventario editado con éxito");
+    } catch (e) {
+      toast.error(e);
     }
-    
-  }
+  };
   const getUsuario = () => {
     const opciones = document.getElementById("usuario");
     const seleccion = opciones.options[opciones.selectedIndex].value;
@@ -194,6 +197,7 @@ export default function EditarInventario() {
           return <Selector element={marca} />;
         })}
       </select>
+
       <label>Estado:</label>
       <select
         className="form-select form-select-sm w-50"
@@ -206,9 +210,20 @@ export default function EditarInventario() {
         })}
       </select>
 
-      <button type="button" class="btn btn-outline-primary m-2"
-      onClick={()=>editarInventario()}>Enviar</button>
-      <Link to='/inventarios' type="button" className="btn btn-outline-danger m-2">Cancelar</Link>
+      <button
+        type="button"
+        class="btn btn-outline-primary m-2"
+        onClick={() => editarInventario()}
+      >
+        Enviar
+      </button>
+      <Link
+        to="/inventarios"
+        type="button"
+        className="btn btn-outline-danger m-2"
+      >
+        Cancelar
+      </Link>
       <ToastContainer position="bottom-center" autoClose={5000} />
     </div>
   );

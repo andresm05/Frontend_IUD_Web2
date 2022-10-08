@@ -12,6 +12,8 @@ import NuevoTipoEquipo from '../components/tiposequipos/NuevoTipoEquipo'
 import NuevoUsuario from '../components/usuarios/NuevoUsuario'
 import NuevaMarca from '../components/marcas/NuevaMarca'
 import NuevoEstado from '../components/estados/NuevoEstado'
+import NuevoInventario from '../components/inventarios/NuevoInventario'
+import EditarInventario from '../components/inventarios/EditarInventario'
 
 export default function AppRouter() {
   return (
@@ -29,6 +31,8 @@ export default function AppRouter() {
                 <Route path = '/nuevoUsuario' element={<NuevoUsuario/>}/>
                 <Route path = '/nuevaMarca' element={<NuevaMarca/>}/>
                 <Route path = '/nuevoEstado' element={<NuevoEstado/>}/>
+                <Route path = '/nuevoInventario' element={<NuevoInventario/>}/>
+                <Route path = '/editarInventario' element={<EditarInventario/>}/>
             </Routes>
         </main>
     </div>

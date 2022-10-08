@@ -36,7 +36,7 @@ const crearInventario = (data) => {
 /**
  * Actualiza un Inventario por ID
  */
-const editarTipoEquipoPorID = (inventarioId, data) => {
+const editarInventarioPorID = (inventarioId, data) => {
     return axiosConfig.put('inventarios/'+inventarioId, data, {
         headers: {
             'Content-type': 'application/json'
@@ -58,7 +58,7 @@ const editarTipoEquipoPorID = (inventarioId, data) => {
 export {
     obtenerInventarios,
     crearInventario,
-    editarTipoEquipoPorID,
+    editarInventarioPorID,
     borrarInventarioPorId,
     obtenerInventarioPorId
 }
